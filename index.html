@@ -11,17 +11,133 @@
 </head>
 <body>
   <main>
-    <section class="hero">
+    <section class="hero" aria-label="SCAN-Planner overview">
       <div class="hero-inner">
-        <p class="project-name">Route-Guided Quadruped Navigation</p>
-        <h1>
-          <span class="title-main">SCAN-Planner</span>
-          <span class="title-subtitle">Spatial Collision-Aware Local planning for Route-Guided Long-Range Quadruped Navigation</span>
-        </h1>
-        <p class="authors">Han Zheng, Zhe Chen, Yiwen Fu, Yang Ming, Tong Qin</p>
-        <div class="links">
-          <a href="https://github.com/wuyi2121/SCAN-Planner" target="_blank" rel="noopener">GitHub</a>
+        <div class="hero-copy">
+          <h1>
+            <span class="title-main">SCAN-Planner</span>
+            <span class="title-subtitle">Spatial Collision-Aware Local planning for Route-Guided Long-Range Quadruped Navigation</span>
+          </h1>
+          <p class="authors">Han Zheng, Zhe Chen, Yiwen Fu, Yang Ming, Tong Qin</p>
+          <div class="links">
+            <a href="https://github.com/wuyi2121/SCAN-Planner" target="_blank" rel="noopener">GitHub</a>
+          </div>
         </div>
+
+        <section class="hero-reel" aria-label="Scenario video reel">
+          <div class="reel-viewport">
+            <div class="reel-track">
+              <article class="reel-slide category-cross is-active" data-reel-slide>
+                <video
+                  class="reel-video reel-video-cross"
+                  data-src="video/Cross%20floor.mp4"
+                  muted
+                  defaultMuted
+                  playsinline
+                  loop
+                  preload="metadata"
+                  controlsList="nodownload noplaybackrate noremoteplayback"
+                  disablepictureinpicture
+                  disableRemotePlayback>
+                </video>
+                <h2>Cross-Floor Inspection</h2>
+              </article>
+
+              <article class="reel-slide category-delivery" data-reel-slide>
+                <video
+                  class="reel-video"
+                  data-src="video/Last%20mile%20delivery.mp4"
+                  muted
+                  defaultMuted
+                  playsinline
+                  loop
+                  preload="metadata"
+                  controlsList="nodownload noplaybackrate noremoteplayback"
+                  disablepictureinpicture
+                  disableRemotePlayback>
+                </video>
+                <h2>Last-Mile Delivery</h2>
+              </article>
+
+              <article class="reel-slide category-navigation" data-reel-slide>
+                <video
+                  class="reel-video"
+                  data-src="video/Cluttered%20room.mp4"
+                  muted
+                  defaultMuted
+                  playsinline
+                  loop
+                  preload="metadata"
+                  controlsList="nodownload noplaybackrate noremoteplayback"
+                  disablepictureinpicture
+                  disableRemotePlayback>
+                </video>
+                <h2>Cluttered Room</h2>
+              </article>
+
+              <article class="reel-slide category-navigation" data-reel-slide>
+                <video
+                  class="reel-video"
+                  data-src="video/S-shaped%20bend.mp4"
+                  muted
+                  defaultMuted
+                  playsinline
+                  loop
+                  preload="metadata"
+                  controlsList="nodownload noplaybackrate noremoteplayback"
+                  disablepictureinpicture
+                  disableRemotePlayback>
+                </video>
+                <h2>S-Shaped Bend</h2>
+              </article>
+
+              <article class="reel-slide category-navigation" data-reel-slide>
+                <video
+                  class="reel-video"
+                  data-src="video/3D%20unstructured%20terrain.mp4"
+                  muted
+                  defaultMuted
+                  playsinline
+                  loop
+                  preload="metadata"
+                  controlsList="nodownload noplaybackrate noremoteplayback"
+                  disablepictureinpicture
+                  disableRemotePlayback>
+                </video>
+                <h2>3D Unstructured Terrain</h2>
+              </article>
+
+              <article class="reel-slide category-navigation" data-reel-slide>
+                <video
+                  class="reel-video"
+                  data-src="video/Dynamic%20obstacle.mp4"
+                  muted
+                  defaultMuted
+                  playsinline
+                  loop
+                  preload="metadata"
+                  controlsList="nodownload noplaybackrate noremoteplayback"
+                  disablepictureinpicture
+                  disableRemotePlayback>
+                </video>
+                <h2>Dynamic Obstacle</h2>
+              </article>
+            </div>
+          </div>
+
+          <div class="reel-controls" aria-label="Video reel controls">
+            <button type="button" class="reel-arrow" data-reel-prev aria-label="Previous video">&lt;</button>
+            <div class="reel-dots" aria-label="Select video">
+              <button type="button" class="is-active" data-reel-index="0" aria-label="Cross-Floor Inspection"></button>
+              <button type="button" data-reel-index="1" aria-label="Last-Mile Delivery"></button>
+              <button type="button" data-reel-index="2" aria-label="Cluttered Room"></button>
+              <button type="button" data-reel-index="3" aria-label="S-Shaped Bend"></button>
+              <button type="button" data-reel-index="4" aria-label="3D Unstructured Terrain"></button>
+              <button type="button" data-reel-index="5" aria-label="Dynamic Obstacle"></button>
+            </div>
+            <button type="button" class="reel-arrow" data-reel-next aria-label="Next video">&gt;</button>
+          </div>
+        </section>
       </div>
     </section>
 
@@ -32,9 +148,9 @@
             <p class="category-name">Inspection</p>
             <h2>Cross-Floor Inspection</h2>
           </div>
-          <div class="video-frame">
+          <div class="video-frame video-frame-cross">
             <video
-              class="video-cover"
+              class="video-cross"
               data-src="video/Cross%20floor.mp4"
               controls
               muted
@@ -71,7 +187,7 @@
         </article>
       </section>
 
-      <section class="video-category category-navigation" aria-label="Complex navigation scenarios">
+      <section class="video-category category-navigation" aria-label="Cluttered Room">
         <article class="video-section">
           <div class="video-copy">
             <p class="category-name">Complex Navigation</p>
@@ -91,7 +207,9 @@
             </video>
           </div>
         </article>
+      </section>
 
+      <section class="video-category category-navigation" aria-label="S-Shaped Bend">
         <article class="video-section">
           <div class="video-copy">
             <p class="category-name">Complex Navigation</p>
@@ -111,7 +229,9 @@
             </video>
           </div>
         </article>
+      </section>
 
+      <section class="video-category category-navigation" aria-label="3D Unstructured Terrain">
         <article class="video-section">
           <div class="video-copy">
             <p class="category-name">Complex Navigation</p>
@@ -131,7 +251,9 @@
             </video>
           </div>
         </article>
+      </section>
 
+      <section class="video-category category-navigation" aria-label="Dynamic Obstacle">
         <article class="video-section">
           <div class="video-copy">
             <p class="category-name">Complex Navigation</p>
