@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-labelledby="title desc">
+  <title id="title">Shanghai Jiao Tong University icon</title>
+  <desc id="desc">A compact blue and white SJTU monogram icon.</desc>
+  <defs>
+    <linearGradient id="g" x1="18" y1="18" x2="102" y2="102" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0f5bd7"/>
+      <stop offset="1" stop-color="#56b6ff"/>
+    </linearGradient>
+  </defs>
+  <circle cx="60" cy="60" r="54" fill="url(#g)"/>
+  <circle cx="60" cy="60" r="47" fill="none" stroke="#fff" stroke-width="4"/>
+  <path fill="#fff" d="M33 78c5 4 12 6 20 6 13 0 22-6 22-16 0-9-7-13-19-16-8-2-12-4-12-8 0-4 4-7 11-7 6 0 12 2 17 6l6-10c-6-5-14-7-23-7-13 0-22 7-22 17 0 10 8 14 20 17 8 2 11 4 11 8 0 4-4 6-11 6-7 0-14-3-20-7l-6 11Z"/>
+  <path fill="#fff" d="M73 38h13v34c0 13-8 20-21 20-7 0-13-2-18-6l5-10c4 3 8 5 13 5 5 0 8-3 8-9V38Z" opacity=".92"/>
+</svg>

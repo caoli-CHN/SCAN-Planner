@@ -17,7 +17,7 @@
         <div class="columns is-centered">
           <div class="column has-text-centered">
             <h1 class="title is-1 publication-title">
-              SCAN-Planner: Spatial Collision-Aware Local planning for Route-Guided Long-Range Quadruped Navigation
+              <span class="scan-gradient">SCAN-Planner</span>: Spatial Collision-Aware Local planning for Route-Guided Long-Range Quadruped Navigation
             </h1>
             <div class="is-size-4 publication-authors">
               <span class="author-block">Han Zheng,</span>
@@ -25,6 +25,10 @@
               <span class="author-block">Yiwen Fu,</span>
               <span class="author-block">Yang Ming,</span>
               <span class="author-block">Tong Qin</span>
+            </div>
+            <div class="publication-affiliation">
+              <img src="static/images/sjtu-icon.svg" alt="Shanghai Jiao Tong University">
+              <span>Shanghai Jiao Tong University</span>
             </div>
             <div class="publication-links">
               <span class="link-block">
@@ -39,65 +43,51 @@
     </div>
   </section>
 
-  <section class="hero teaser">
-    <div class="container is-max-widescreen has-text-centered">
-      <video id="teaser" autoplay controls muted defaultMuted playsinline preload="metadata" controlsList="nodownload noplaybackrate noremoteplayback" disablepictureinpicture disableRemotePlayback>
-        <source src="video/Cross%20floor.mp4" type="video/mp4">
-      </video>
-      <p class="video-caption">Cross-Floor Inspection</p>
-    </div>
-  </section>
-
   <section class="section">
     <div class="container is-max-widescreen">
       <h2 class="title is-2 has-text-centered">Demonstrations</h2>
 
-      <div class="columns is-centered is-variable is-4">
-        <div class="column">
-          <div class="content has-text-centered">
-            <video autoplay controls muted defaultMuted loop playsinline preload="metadata" controlsList="nodownload noplaybackrate noremoteplayback" disablepictureinpicture disableRemotePlayback>
-              <source src="video/Last%20mile%20delivery.mp4" type="video/mp4">
-            </video>
-            <p>Last-Mile Delivery</p>
-          </div>
+      <div class="demo-list">
+        <div class="demo-item content has-text-centered">
+          <video autoplay controls muted defaultMuted loop playsinline preload="metadata" controlsList="nodownload noplaybackrate noremoteplayback" disablepictureinpicture disableRemotePlayback>
+            <source src="video/Cross%20floor.mp4" type="video/mp4">
+          </video>
+          <p>Cross-Floor Inspection</p>
         </div>
-        <div class="column">
-          <div class="content has-text-centered">
-            <video autoplay controls muted defaultMuted loop playsinline preload="metadata" controlsList="nodownload noplaybackrate noremoteplayback" disablepictureinpicture disableRemotePlayback>
-              <source src="video/Cluttered%20room.mp4" type="video/mp4">
-            </video>
-            <p>Cluttered Room</p>
-          </div>
-        </div>
-      </div>
 
-      <div class="columns is-centered is-variable is-4">
-        <div class="column">
-          <div class="content has-text-centered">
-            <video autoplay controls muted defaultMuted loop playsinline preload="metadata" controlsList="nodownload noplaybackrate noremoteplayback" disablepictureinpicture disableRemotePlayback>
-              <source src="video/S-shaped%20bend.mp4" type="video/mp4">
-            </video>
-            <p>S-Shaped Bend</p>
-          </div>
+        <div class="demo-item content has-text-centered">
+          <video autoplay controls muted defaultMuted loop playsinline preload="metadata" controlsList="nodownload noplaybackrate noremoteplayback" disablepictureinpicture disableRemotePlayback>
+            <source src="video/Last%20mile%20delivery.mp4" type="video/mp4">
+          </video>
+          <p>Last-Mile Delivery</p>
         </div>
-        <div class="column">
-          <div class="content has-text-centered">
-            <video autoplay controls muted defaultMuted loop playsinline preload="metadata" controlsList="nodownload noplaybackrate noremoteplayback" disablepictureinpicture disableRemotePlayback>
-              <source src="video/3D%20unstructured%20terrain.mp4" type="video/mp4">
-            </video>
-            <p>3D Unstructured Terrain</p>
-          </div>
-        </div>
-      </div>
 
-      <div class="columns is-centered is-variable is-4 single-demo-row">
-        <div class="column is-half">
-          <div class="content has-text-centered">
-            <video autoplay controls muted defaultMuted loop playsinline preload="metadata" controlsList="nodownload noplaybackrate noremoteplayback" disablepictureinpicture disableRemotePlayback>
-              <source src="video/Dynamic%20obstacle.mp4" type="video/mp4">
-            </video>
-            <p>Dynamic Obstacle</p>
-          </div>
+        <div class="demo-item content has-text-centered">
+          <video autoplay controls muted defaultMuted loop playsinline preload="metadata" controlsList="nodownload noplaybackrate noremoteplayback" disablepictureinpicture disableRemotePlayback>
+            <source src="video/Cluttered%20room.mp4" type="video/mp4">
+          </video>
+          <p>Cluttered Room</p>
+        </div>
+
+        <div class="demo-item content has-text-centered">
+          <video autoplay controls muted defaultMuted loop playsinline preload="metadata" controlsList="nodownload noplaybackrate noremoteplayback" disablepictureinpicture disableRemotePlayback>
+            <source src="video/S-shaped%20bend.mp4" type="video/mp4">
+          </video>
+          <p>S-Shaped Bend</p>
+        </div>
+
+        <div class="demo-item content has-text-centered">
+          <video autoplay controls muted defaultMuted loop playsinline preload="metadata" controlsList="nodownload noplaybackrate noremoteplayback" disablepictureinpicture disableRemotePlayback>
+            <source src="video/3D%20unstructured%20terrain.mp4" type="video/mp4">
+          </video>
+          <p>3D Unstructured Terrain</p>
+        </div>
+
+        <div class="demo-item content has-text-centered">
+          <video autoplay controls muted defaultMuted loop playsinline preload="metadata" controlsList="nodownload noplaybackrate noremoteplayback" disablepictureinpicture disableRemotePlayback>
+            <source src="video/Dynamic%20obstacle.mp4" type="video/mp4">
+          </video>
+          <p>Dynamic Obstacle</p>
         </div>
       </div>
     </div>
