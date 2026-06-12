@@ -10,8 +10,18 @@
   <script defer src="static/js/index.js"></script>
 </head>
 <body>
+  <nav class="section-nav" aria-label="Section navigation">
+    <button type="button" class="is-active" data-section-target="intro" aria-label="SCAN-Planner"></button>
+    <button type="button" data-section-target="cross" aria-label="Cross-Floor Inspection"></button>
+    <button type="button" data-section-target="delivery" aria-label="Last-Mile Delivery"></button>
+    <button type="button" data-section-target="clutter" aria-label="Cluttered Room"></button>
+    <button type="button" data-section-target="sshape" aria-label="S-Shaped Bend"></button>
+    <button type="button" data-section-target="terrain" aria-label="3D Unstructured Terrain"></button>
+    <button type="button" data-section-target="dynamic" aria-label="Dynamic Obstacle"></button>
+  </nav>
+
   <main>
-    <section class="hero" aria-label="SCAN-Planner overview">
+    <section class="hero snap-section" id="intro" data-section="intro" aria-label="SCAN-Planner overview">
       <div class="hero-inner">
         <div class="hero-copy">
           <h1>
@@ -23,126 +33,11 @@
             <a href="https://github.com/wuyi2121/SCAN-Planner" target="_blank" rel="noopener">GitHub</a>
           </div>
         </div>
-
-        <section class="hero-reel" aria-label="Scenario video reel">
-          <div class="reel-viewport">
-            <div class="reel-track">
-              <article class="reel-slide category-cross is-active" data-reel-slide>
-                <video
-                  class="reel-video reel-video-cross"
-                  data-src="video/Cross%20floor.mp4"
-                  muted
-                  defaultMuted
-                  playsinline
-                  loop
-                  preload="metadata"
-                  controlsList="nodownload noplaybackrate noremoteplayback"
-                  disablepictureinpicture
-                  disableRemotePlayback>
-                </video>
-                <h2>Cross-Floor Inspection</h2>
-              </article>
-
-              <article class="reel-slide category-delivery" data-reel-slide>
-                <video
-                  class="reel-video"
-                  data-src="video/Last%20mile%20delivery.mp4"
-                  muted
-                  defaultMuted
-                  playsinline
-                  loop
-                  preload="metadata"
-                  controlsList="nodownload noplaybackrate noremoteplayback"
-                  disablepictureinpicture
-                  disableRemotePlayback>
-                </video>
-                <h2>Last-Mile Delivery</h2>
-              </article>
-
-              <article class="reel-slide category-navigation" data-reel-slide>
-                <video
-                  class="reel-video"
-                  data-src="video/Cluttered%20room.mp4"
-                  muted
-                  defaultMuted
-                  playsinline
-                  loop
-                  preload="metadata"
-                  controlsList="nodownload noplaybackrate noremoteplayback"
-                  disablepictureinpicture
-                  disableRemotePlayback>
-                </video>
-                <h2>Cluttered Room</h2>
-              </article>
-
-              <article class="reel-slide category-navigation" data-reel-slide>
-                <video
-                  class="reel-video"
-                  data-src="video/S-shaped%20bend.mp4"
-                  muted
-                  defaultMuted
-                  playsinline
-                  loop
-                  preload="metadata"
-                  controlsList="nodownload noplaybackrate noremoteplayback"
-                  disablepictureinpicture
-                  disableRemotePlayback>
-                </video>
-                <h2>S-Shaped Bend</h2>
-              </article>
-
-              <article class="reel-slide category-navigation" data-reel-slide>
-                <video
-                  class="reel-video"
-                  data-src="video/3D%20unstructured%20terrain.mp4"
-                  muted
-                  defaultMuted
-                  playsinline
-                  loop
-                  preload="metadata"
-                  controlsList="nodownload noplaybackrate noremoteplayback"
-                  disablepictureinpicture
-                  disableRemotePlayback>
-                </video>
-                <h2>3D Unstructured Terrain</h2>
-              </article>
-
-              <article class="reel-slide category-navigation" data-reel-slide>
-                <video
-                  class="reel-video"
-                  data-src="video/Dynamic%20obstacle.mp4"
-                  muted
-                  defaultMuted
-                  playsinline
-                  loop
-                  preload="metadata"
-                  controlsList="nodownload noplaybackrate noremoteplayback"
-                  disablepictureinpicture
-                  disableRemotePlayback>
-                </video>
-                <h2>Dynamic Obstacle</h2>
-              </article>
-            </div>
-          </div>
-
-          <div class="reel-controls" aria-label="Video reel controls">
-            <button type="button" class="reel-arrow" data-reel-prev aria-label="Previous video">&lt;</button>
-            <div class="reel-dots" aria-label="Select video">
-              <button type="button" class="is-active" data-reel-index="0" aria-label="Cross-Floor Inspection"></button>
-              <button type="button" data-reel-index="1" aria-label="Last-Mile Delivery"></button>
-              <button type="button" data-reel-index="2" aria-label="Cluttered Room"></button>
-              <button type="button" data-reel-index="3" aria-label="S-Shaped Bend"></button>
-              <button type="button" data-reel-index="4" aria-label="3D Unstructured Terrain"></button>
-              <button type="button" data-reel-index="5" aria-label="Dynamic Obstacle"></button>
-            </div>
-            <button type="button" class="reel-arrow" data-reel-next aria-label="Next video">&gt;</button>
-          </div>
-        </section>
       </div>
     </section>
 
     <section class="video-showcase" aria-label="SCAN-Planner videos">
-      <section class="video-category category-cross" aria-label="Cross-Floor Inspection">
+      <section class="video-category category-cross snap-section" id="cross" data-section="cross" aria-label="Cross-Floor Inspection">
         <article class="video-section">
           <div class="video-copy">
             <p class="category-name">Inspection</p>
@@ -165,7 +60,7 @@
         </article>
       </section>
 
-      <section class="video-category category-delivery" aria-label="Last-Mile Delivery">
+      <section class="video-category category-delivery snap-section" id="delivery" data-section="delivery" aria-label="Last-Mile Delivery">
         <article class="video-section">
           <div class="video-copy">
             <p class="category-name">Delivery</p>
@@ -187,7 +82,7 @@
         </article>
       </section>
 
-      <section class="video-category category-navigation" aria-label="Cluttered Room">
+      <section class="video-category category-navigation snap-section" id="clutter" data-section="clutter" aria-label="Cluttered Room">
         <article class="video-section">
           <div class="video-copy">
             <p class="category-name">Complex Navigation</p>
@@ -209,7 +104,7 @@
         </article>
       </section>
 
-      <section class="video-category category-navigation" aria-label="S-Shaped Bend">
+      <section class="video-category category-navigation snap-section" id="sshape" data-section="sshape" aria-label="S-Shaped Bend">
         <article class="video-section">
           <div class="video-copy">
             <p class="category-name">Complex Navigation</p>
@@ -231,7 +126,7 @@
         </article>
       </section>
 
-      <section class="video-category category-navigation" aria-label="3D Unstructured Terrain">
+      <section class="video-category category-navigation snap-section" id="terrain" data-section="terrain" aria-label="3D Unstructured Terrain">
         <article class="video-section">
           <div class="video-copy">
             <p class="category-name">Complex Navigation</p>
@@ -253,7 +148,7 @@
         </article>
       </section>
 
-      <section class="video-category category-navigation" aria-label="Dynamic Obstacle">
+      <section class="video-category category-navigation snap-section" id="dynamic" data-section="dynamic" aria-label="Dynamic Obstacle">
         <article class="video-section">
           <div class="video-copy">
             <p class="category-name">Complex Navigation</p>

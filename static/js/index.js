@@ -1,15 +1,10 @@
 (function () {
   const videos = Array.from(document.querySelectorAll("video[data-src]"));
-  const reel = document.querySelector(".hero-reel");
-  const reelTrack = document.querySelector(".reel-track");
-  const reelSlides = Array.from(document.querySelectorAll("[data-reel-slide]"));
-  const reelDots = Array.from(document.querySelectorAll("[data-reel-index]"));
-  const reelPrev = document.querySelector("[data-reel-prev]");
-  const reelNext = document.querySelector("[data-reel-next]");
+  const sections = Array.from(document.querySelectorAll(".snap-section"));
+  const navButtons = Array.from(document.querySelectorAll("[data-section-target]"));
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  let reelIndex = 0;
-  let reelVisible = false;
-  let reelTimer = null;
+  let activeIndex = 0;
+  let snapLocked = false;
 
   function lockMuted(video) {
     video.muted = true;
@@ -40,55 +35,50 @@
     }
   }
 
-  function isReelVideo(video) {
-    return video.classList.contains("reel-video");
-  }
-
-  function getReelVideo(index) {
-    const slide = reelSlides[index];
-    return slide ? slide.querySelector("video") : null;
-  }
-
-  function setReelIndex(nextIndex) {
-    if (!reelTrack || reelSlides.length === 0) {
-      return;
-    }
-
-    reelIndex = (nextIndex + reelSlides.length) % reelSlides.length;
-    reelTrack.style.transform = "translateX(-" + reelIndex * 100 + "%)";
-
-    reelSlides.forEach(function (slide, index) {
-      slide.classList.toggle("is-active", index === reelIndex);
-      const video = slide.querySelector("video");
-      if (!video) {
-        return;
-      }
-      if (index === reelIndex && reelVisible) {
-        playVideo(video);
-      } else {
-        video.pause();
-      }
-    });
-
-    reelDots.forEach(function (dot, index) {
-      dot.classList.toggle("is-active", index === reelIndex);
+  function sectionIndexById(id) {
+    return sections.findIndex(function (section) {
+      return section.id === id || section.dataset.section === id;
     });
   }
 
-  function resetReelTimer() {
-    if (reelTimer) {
-      window.clearInterval(reelTimer);
-    }
+  function setActiveSection(index) {
+    activeIndex = Math.max(0, Math.min(index, sections.length - 1));
+    const activeSection = sections[activeIndex];
+    const activeId = activeSection ? activeSection.dataset.section : "";
 
-    if (reduceMotion || reelSlides.length < 2) {
+    navButtons.forEach(function (button) {
+      button.classList.toggle("is-active", button.dataset.sectionTarget === activeId);
+    });
+  }
+
+  function scrollToSection(index) {
+    if (!sections[index]) {
       return;
     }
 
-    reelTimer = window.setInterval(function () {
-      if (reelVisible) {
-        setReelIndex(reelIndex + 1);
-      }
-    }, 6500);
+    setActiveSection(index);
+    sections[index].scrollIntoView({
+      behavior: reduceMotion ? "auto" : "smooth",
+      block: "start"
+    });
+  }
+
+  function snapToRelative(direction) {
+    if (snapLocked || direction === 0) {
+      return;
+    }
+
+    const targetIndex = Math.max(0, Math.min(activeIndex + direction, sections.length - 1));
+    if (targetIndex === activeIndex) {
+      return;
+    }
+
+    snapLocked = true;
+    scrollToSection(targetIndex);
+
+    window.setTimeout(function () {
+      snapLocked = false;
+    }, reduceMotion ? 120 : 850);
   }
 
   videos.forEach(function (video) {
@@ -101,88 +91,100 @@
     });
   });
 
-  if (reelPrev) {
-    reelPrev.addEventListener("click", function () {
-      setReelIndex(reelIndex - 1);
-      resetReelTimer();
-    });
-  }
-
-  if (reelNext) {
-    reelNext.addEventListener("click", function () {
-      setReelIndex(reelIndex + 1);
-      resetReelTimer();
-    });
-  }
-
-  reelDots.forEach(function (dot) {
-    dot.addEventListener("click", function () {
-      setReelIndex(Number(dot.dataset.reelIndex));
-      resetReelTimer();
+  navButtons.forEach(function (button) {
+    button.addEventListener("click", function () {
+      const index = sectionIndexById(button.dataset.sectionTarget);
+      scrollToSection(index);
     });
   });
 
-  if (!("IntersectionObserver" in window)) {
-    videos.forEach(loadVideo);
-    reelVisible = true;
-    setReelIndex(0);
-    resetReelTimer();
-    return;
-  }
+  if ("IntersectionObserver" in window) {
+    const sectionObserver = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) {
+            return;
+          }
+          const index = sections.indexOf(entry.target);
+          if (index >= 0) {
+            setActiveSection(index);
+          }
+        });
+      },
+      {
+        root: null,
+        threshold: 0.62
+      }
+    );
 
-  const reelObserver = new IntersectionObserver(
-    function (entries) {
-      entries.forEach(function (entry) {
-        reelVisible = entry.isIntersecting;
-        const activeVideo = getReelVideo(reelIndex);
-        if (!activeVideo) {
-          return;
-        }
-        if (reelVisible) {
-          playVideo(activeVideo);
-        } else {
-          activeVideo.pause();
-        }
-      });
-    },
-    {
-      root: null,
-      threshold: 0.25
-    }
-  );
+    sections.forEach(function (section) {
+      sectionObserver.observe(section);
+    });
 
-  if (reel) {
-    reelObserver.observe(reel);
-  }
+    const videoObserver = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          const video = entry.target;
 
-  const videoObserver = new IntersectionObserver(
-    function (entries) {
-      entries.forEach(function (entry) {
-        const video = entry.target;
-        if (isReelVideo(video)) {
-          return;
-        }
+          if (entry.isIntersecting) {
+            playVideo(video);
+          } else {
+            video.pause();
+          }
+        });
+      },
+      {
+        root: null,
+        rootMargin: "280px 0px",
+        threshold: 0.24
+      }
+    );
 
-        if (entry.isIntersecting) {
-          playVideo(video);
-        } else {
-          video.pause();
-        }
-      });
-    },
-    {
-      root: null,
-      rootMargin: "360px 0px",
-      threshold: 0.22
-    }
-  );
-
-  videos.forEach(function (video) {
-    if (!isReelVideo(video)) {
+    videos.forEach(function (video) {
       videoObserver.observe(video);
+    });
+  } else {
+    videos.forEach(loadVideo);
+  }
+
+  window.addEventListener(
+    "wheel",
+    function (event) {
+      if (Math.abs(event.deltaY) < 36 || Math.abs(event.deltaY) < Math.abs(event.deltaX)) {
+        return;
+      }
+
+      event.preventDefault();
+      snapToRelative(event.deltaY > 0 ? 1 : -1);
+    },
+    { passive: false }
+  );
+
+  window.addEventListener("keydown", function (event) {
+    if (event.defaultPrevented) {
+      return;
+    }
+
+    if (event.key === "ArrowDown" || event.key === "PageDown" || event.key === " ") {
+      event.preventDefault();
+      snapToRelative(1);
+    }
+
+    if (event.key === "ArrowUp" || event.key === "PageUp") {
+      event.preventDefault();
+      snapToRelative(-1);
+    }
+
+    if (event.key === "Home") {
+      event.preventDefault();
+      scrollToSection(0);
+    }
+
+    if (event.key === "End") {
+      event.preventDefault();
+      scrollToSection(sections.length - 1);
     }
   });
 
-  setReelIndex(0);
-  resetReelTimer();
+  setActiveSection(0);
 })();
