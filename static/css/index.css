@@ -75,11 +75,11 @@ body {
 }
 
 .scan-gradient {
-  background: linear-gradient(90deg, #0b4fd8 0%, #3aa8ff 55%, #eaf7ff 100%);
+  background: linear-gradient(90deg, #c91f37 0%, #8f1d2c 42%, #2f333a 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  filter: drop-shadow(0 1px 0 rgba(11, 79, 216, 0.18));
+  filter: drop-shadow(0 1px 0 rgba(47, 51, 58, 0.16));
 }
 
 .title.is-2 {
@@ -171,7 +171,12 @@ video {
 
 .demo-list {
   display: grid;
-  gap: 2.25rem;
+  gap: 2rem;
+}
+
+.demo-group-title {
+  margin-top: 0.75rem;
+  margin-bottom: 0;
 }
 
 .demo-item {
