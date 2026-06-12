@@ -6,170 +6,109 @@
   <meta name="keywords" content="Quadruped Navigation, Local Planning, Collision Avoidance, Robotics">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SCAN-Planner</title>
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
   <link rel="stylesheet" href="static/css/index.css">
   <script defer src="static/js/index.js"></script>
 </head>
 <body>
-  <nav class="section-nav" aria-label="Section navigation">
-    <button type="button" class="is-active" data-section-target="intro" aria-label="SCAN-Planner"></button>
-    <button type="button" data-section-target="cross" aria-label="Cross-Floor Inspection"></button>
-    <button type="button" data-section-target="delivery" aria-label="Last-Mile Delivery"></button>
-    <button type="button" data-section-target="clutter" aria-label="Cluttered Room"></button>
-    <button type="button" data-section-target="sshape" aria-label="S-Shaped Bend"></button>
-    <button type="button" data-section-target="terrain" aria-label="3D Unstructured Terrain"></button>
-    <button type="button" data-section-target="dynamic" aria-label="Dynamic Obstacle"></button>
-  </nav>
-
-  <main>
-    <section class="hero snap-section" id="intro" data-section="intro" aria-label="SCAN-Planner overview">
-      <div class="hero-inner">
-        <div class="hero-copy">
-          <h1>
-            <span class="title-main">SCAN-Planner</span>
-            <span class="title-subtitle">Spatial Collision-Aware Local planning for Route-Guided Long-Range Quadruped Navigation</span>
-          </h1>
-          <p class="authors">Han Zheng, Zhe Chen, Yiwen Fu, Yang Ming, Tong Qin</p>
-          <div class="links">
-            <a href="https://github.com/wuyi2121/SCAN-Planner" target="_blank" rel="noopener">GitHub</a>
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-widescreen">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">
+              SCAN-Planner: Spatial Collision-Aware Local planning for Route-Guided Long-Range Quadruped Navigation
+            </h1>
+            <div class="is-size-4 publication-authors">
+              <span class="author-block">Han Zheng,</span>
+              <span class="author-block">Zhe Chen,</span>
+              <span class="author-block">Yiwen Fu,</span>
+              <span class="author-block">Yang Ming,</span>
+              <span class="author-block">Tong Qin</span>
+            </div>
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="https://github.com/wuyi2121/SCAN-Planner" target="_blank" rel="noopener" class="button is-normal is-rounded is-dark">
+                  <span>Code</span>
+                </a>
+              </span>
+            </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="video-showcase" aria-label="SCAN-Planner videos">
-      <section class="video-category category-cross snap-section" id="cross" data-section="cross" aria-label="Cross-Floor Inspection">
-        <article class="video-section">
-          <div class="video-copy">
-            <p class="category-name">Inspection</p>
-            <h2>Cross-Floor Inspection</h2>
-          </div>
-          <div class="video-frame video-frame-cross">
-            <video
-              class="video-cross"
-              data-src="video/Cross%20floor.mp4"
-              controls
-              muted
-              defaultMuted
-              playsinline
-              preload="metadata"
-              controlsList="nodownload noplaybackrate noremoteplayback"
-              disablepictureinpicture
-              disableRemotePlayback>
-            </video>
-          </div>
-        </article>
-      </section>
+  <section class="hero teaser">
+    <div class="container is-max-widescreen has-text-centered">
+      <video id="teaser" autoplay controls muted defaultMuted playsinline preload="metadata" controlsList="nodownload noplaybackrate noremoteplayback" disablepictureinpicture disableRemotePlayback>
+        <source src="video/Cross%20floor.mp4" type="video/mp4">
+      </video>
+      <p class="video-caption">Cross-Floor Inspection</p>
+    </div>
+  </section>
 
-      <section class="video-category category-delivery snap-section" id="delivery" data-section="delivery" aria-label="Last-Mile Delivery">
-        <article class="video-section">
-          <div class="video-copy">
-            <p class="category-name">Delivery</p>
-            <h2>Last-Mile Delivery</h2>
-          </div>
-          <div class="video-frame">
-            <video
-              data-src="video/Last%20mile%20delivery.mp4"
-              controls
-              muted
-              defaultMuted
-              playsinline
-              preload="metadata"
-              controlsList="nodownload noplaybackrate noremoteplayback"
-              disablepictureinpicture
-              disableRemotePlayback>
-            </video>
-          </div>
-        </article>
-      </section>
+  <section class="section">
+    <div class="container is-max-widescreen">
+      <h2 class="title is-2 has-text-centered">Demonstrations</h2>
 
-      <section class="video-category category-navigation snap-section" id="clutter" data-section="clutter" aria-label="Cluttered Room">
-        <article class="video-section">
-          <div class="video-copy">
-            <p class="category-name">Complex Navigation</p>
-            <h2>Cluttered Room</h2>
-          </div>
-          <div class="video-frame">
-            <video
-              data-src="video/Cluttered%20room.mp4"
-              controls
-              muted
-              defaultMuted
-              playsinline
-              preload="metadata"
-              controlsList="nodownload noplaybackrate noremoteplayback"
-              disablepictureinpicture
-              disableRemotePlayback>
+      <div class="columns is-centered is-variable is-4">
+        <div class="column">
+          <div class="content has-text-centered">
+            <video autoplay controls muted defaultMuted loop playsinline preload="metadata" controlsList="nodownload noplaybackrate noremoteplayback" disablepictureinpicture disableRemotePlayback>
+              <source src="video/Last%20mile%20delivery.mp4" type="video/mp4">
             </video>
+            <p>Last-Mile Delivery</p>
           </div>
-        </article>
-      </section>
+        </div>
+        <div class="column">
+          <div class="content has-text-centered">
+            <video autoplay controls muted defaultMuted loop playsinline preload="metadata" controlsList="nodownload noplaybackrate noremoteplayback" disablepictureinpicture disableRemotePlayback>
+              <source src="video/Cluttered%20room.mp4" type="video/mp4">
+            </video>
+            <p>Cluttered Room</p>
+          </div>
+        </div>
+      </div>
 
-      <section class="video-category category-navigation snap-section" id="sshape" data-section="sshape" aria-label="S-Shaped Bend">
-        <article class="video-section">
-          <div class="video-copy">
-            <p class="category-name">Complex Navigation</p>
-            <h2>S-Shaped Bend</h2>
-          </div>
-          <div class="video-frame">
-            <video
-              data-src="video/S-shaped%20bend.mp4"
-              controls
-              muted
-              defaultMuted
-              playsinline
-              preload="metadata"
-              controlsList="nodownload noplaybackrate noremoteplayback"
-              disablepictureinpicture
-              disableRemotePlayback>
+      <div class="columns is-centered is-variable is-4">
+        <div class="column">
+          <div class="content has-text-centered">
+            <video autoplay controls muted defaultMuted loop playsinline preload="metadata" controlsList="nodownload noplaybackrate noremoteplayback" disablepictureinpicture disableRemotePlayback>
+              <source src="video/S-shaped%20bend.mp4" type="video/mp4">
             </video>
+            <p>S-Shaped Bend</p>
           </div>
-        </article>
-      </section>
+        </div>
+        <div class="column">
+          <div class="content has-text-centered">
+            <video autoplay controls muted defaultMuted loop playsinline preload="metadata" controlsList="nodownload noplaybackrate noremoteplayback" disablepictureinpicture disableRemotePlayback>
+              <source src="video/3D%20unstructured%20terrain.mp4" type="video/mp4">
+            </video>
+            <p>3D Unstructured Terrain</p>
+          </div>
+        </div>
+      </div>
 
-      <section class="video-category category-navigation snap-section" id="terrain" data-section="terrain" aria-label="3D Unstructured Terrain">
-        <article class="video-section">
-          <div class="video-copy">
-            <p class="category-name">Complex Navigation</p>
-            <h2>3D Unstructured Terrain</h2>
-          </div>
-          <div class="video-frame">
-            <video
-              data-src="video/3D%20unstructured%20terrain.mp4"
-              controls
-              muted
-              defaultMuted
-              playsinline
-              preload="metadata"
-              controlsList="nodownload noplaybackrate noremoteplayback"
-              disablepictureinpicture
-              disableRemotePlayback>
+      <div class="columns is-centered is-variable is-4 single-demo-row">
+        <div class="column is-half">
+          <div class="content has-text-centered">
+            <video autoplay controls muted defaultMuted loop playsinline preload="metadata" controlsList="nodownload noplaybackrate noremoteplayback" disablepictureinpicture disableRemotePlayback>
+              <source src="video/Dynamic%20obstacle.mp4" type="video/mp4">
             </video>
+            <p>Dynamic Obstacle</p>
           </div>
-        </article>
-      </section>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      <section class="video-category category-navigation snap-section" id="dynamic" data-section="dynamic" aria-label="Dynamic Obstacle">
-        <article class="video-section">
-          <div class="video-copy">
-            <p class="category-name">Complex Navigation</p>
-            <h2>Dynamic Obstacle</h2>
-          </div>
-          <div class="video-frame">
-            <video
-              data-src="video/Dynamic%20obstacle.mp4"
-              controls
-              muted
-              defaultMuted
-              playsinline
-              preload="metadata"
-              controlsList="nodownload noplaybackrate noremoteplayback"
-              disablepictureinpicture
-              disableRemotePlayback>
-            </video>
-          </div>
-        </article>
-      </section>
-    </section>
-  </main>
+  <footer class="footer">
+    <div class="container is-max-widescreen">
+      <div class="content has-text-centered">
+        <p>Page structure adapted from the SEA-Nav project website style.</p>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
