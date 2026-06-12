@@ -223,6 +223,10 @@ video {
   transition: transform 180ms ease, box-shadow 180ms ease;
 }
 
+.demo-item-interactive video {
+  pointer-events: none;
+}
+
 .demo-item-interactive:hover,
 .demo-item-interactive:focus-within {
   transform: translateY(-5px);
