@@ -115,8 +115,8 @@ body {
 .publication-affiliation img {
   width: auto;
   height: auto;
-  max-width: 576px;
-  max-height: 189px;
+  max-width: 288px;
+  max-height: 95px;
   display: block;
 }
 
@@ -221,6 +221,10 @@ video {
 
 .footer p {
   margin: 0;
+}
+
+.dnerf {
+  font-variant: small-caps;
 }
 
 @media screen and (max-width: 768px) {
