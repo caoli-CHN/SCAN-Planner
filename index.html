@@ -23,8 +23,8 @@
               <span class="author-block">Han Zheng,</span>
               <span class="author-block">Zhe Chen,</span>
               <span class="author-block">Yiwen Fu,</span>
-              <span class="author-block">Yang Ming,</span>
-              <span class="author-block">Tong Qin</span>
+              <span class="author-block">Ming Yang,</span>
+              <span class="author-block">Tong Qin*</span>
             </div>
             <div class="publication-affiliation">
               <img src="static/images/logo.png" alt="Shanghai Jiao Tong University">
@@ -62,25 +62,25 @@
       <h2 class="title is-2 has-text-centered demo-group-title">Collision Avoidance Demonstration</h2>
 
       <div class="demo-grid demo-grid-collision">
-        <div class="demo-item content has-text-centered">
+        <div class="demo-item demo-item-interactive content has-text-centered" data-modal-title="Cluttered Room" data-modal-src="video/Cluttered%20room.mp4">
           <video autoplay controls muted defaultMuted loop playsinline preload="metadata" controlsList="nodownload noplaybackrate noremoteplayback" disablepictureinpicture disableRemotePlayback>
             <source src="video/Cluttered%20room.mp4" type="video/mp4">
           </video>
         </div>
 
-        <div class="demo-item content has-text-centered">
+        <div class="demo-item demo-item-interactive content has-text-centered" data-modal-title="S-Shaped Bend" data-modal-src="video/S-shaped%20bend.mp4">
           <video autoplay controls muted defaultMuted loop playsinline preload="metadata" controlsList="nodownload noplaybackrate noremoteplayback" disablepictureinpicture disableRemotePlayback>
             <source src="video/S-shaped%20bend.mp4" type="video/mp4">
           </video>
         </div>
 
-        <div class="demo-item content has-text-centered">
+        <div class="demo-item demo-item-interactive content has-text-centered" data-modal-title="3D Unstructured Terrain" data-modal-src="video/3D%20unstructured%20terrain.mp4">
           <video autoplay controls muted defaultMuted loop playsinline preload="metadata" controlsList="nodownload noplaybackrate noremoteplayback" disablepictureinpicture disableRemotePlayback>
             <source src="video/3D%20unstructured%20terrain.mp4" type="video/mp4">
           </video>
         </div>
 
-        <div class="demo-item content has-text-centered">
+        <div class="demo-item demo-item-interactive content has-text-centered" data-modal-title="Dynamic Obstacle" data-modal-src="video/Dynamic%20obstacle.mp4">
           <video autoplay controls muted defaultMuted loop playsinline preload="metadata" controlsList="nodownload noplaybackrate noremoteplayback" disablepictureinpicture disableRemotePlayback>
             <source src="video/Dynamic%20obstacle.mp4" type="video/mp4">
           </video>
@@ -94,7 +94,7 @@
       <h2 class="title is-2 has-text-centered demo-group-title">Cross-Floor Inspection</h2>
 
       <div class="demo-item content has-text-centered">
-        <video autoplay controls muted defaultMuted loop playsinline preload="metadata" controlsList="nodownload noplaybackrate noremoteplayback" disablepictureinpicture disableRemotePlayback>
+        <video controls muted defaultMuted loop playsinline preload="metadata" controlsList="nodownload noplaybackrate noremoteplayback" disablepictureinpicture disableRemotePlayback>
           <source src="video/Cross%20floor.mp4" type="video/mp4">
         </video>
       </div>
@@ -106,7 +106,7 @@
       <h2 class="title is-2 has-text-centered demo-group-title">Last-Mile Delivery</h2>
 
       <div class="demo-item content has-text-centered">
-        <video autoplay controls muted defaultMuted loop playsinline preload="metadata" controlsList="nodownload noplaybackrate noremoteplayback" disablepictureinpicture disableRemotePlayback>
+        <video controls muted defaultMuted loop playsinline preload="metadata" controlsList="nodownload noplaybackrate noremoteplayback" disablepictureinpicture disableRemotePlayback>
           <source src="video/Last%20mile%20delivery.mp4" type="video/mp4">
         </video>
       </div>
@@ -120,5 +120,15 @@
       </div>
     </div>
   </footer>
+
+  <div class="video-modal" id="video-modal" aria-hidden="true">
+    <button class="modal-close" type="button" aria-label="Close video detail">&times;</button>
+    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-header">
+        <h2 class="modal-title" id="modal-title"></h2>
+      </div>
+      <div class="modal-video-wrap" id="modal-video-wrap"></div>
+    </div>
+  </div>
 </body>
 </html>

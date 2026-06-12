@@ -216,6 +216,99 @@ video {
   max-width: none;
 }
 
+.demo-item-interactive {
+  position: relative;
+  cursor: zoom-in;
+  border-radius: 10px;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.demo-item-interactive:hover,
+.demo-item-interactive:focus-within {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 42px rgba(15, 23, 42, 0.18);
+}
+
+.demo-item-interactive:hover video,
+.demo-item-interactive:focus-within video {
+  outline: 2px solid rgba(198, 31, 44, 0.72);
+  outline-offset: 3px;
+}
+
+.video-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  background: rgba(7, 10, 16, 0.88);
+  backdrop-filter: blur(8px);
+}
+
+.video-modal.active {
+  display: flex;
+}
+
+.modal-content {
+  width: min(1180px, 94vw);
+  max-height: 92vh;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 12px;
+  background: #0b111a;
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.45);
+}
+
+.modal-header {
+  padding: 16px 20px;
+  background: linear-gradient(90deg, rgba(198, 31, 44, 0.18), rgba(239, 91, 42, 0.12));
+}
+
+.modal-title {
+  margin: 0;
+  color: #fff;
+  font-family: "Google Sans", "Noto Sans", Arial, sans-serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.modal-video-wrap {
+  padding: 0;
+  background: #000;
+}
+
+.modal-video-wrap video {
+  width: 100%;
+  max-height: calc(92vh - 66px);
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.modal-close {
+  position: fixed;
+  top: 20px;
+  right: 24px;
+  z-index: 1001;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  cursor: pointer;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.modal-close:hover,
+.modal-close:focus-visible {
+  background: rgba(255, 255, 255, 0.2);
+  outline: none;
+}
+
 .footer {
   padding: 2rem 0 2.5rem;
   background: #fafafa;
@@ -270,6 +363,21 @@ video {
 
   .demo-grid-collision {
     grid-template-columns: 1fr;
+  }
+
+  .video-modal {
+    padding: 18px;
+  }
+
+  .modal-close {
+    top: 12px;
+    right: 12px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .modal-title {
+    font-size: 1.1rem;
   }
 
 }
