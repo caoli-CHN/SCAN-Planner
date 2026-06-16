@@ -1,23 +1,62 @@
-# SCAN-Planner
+<div align="center">
+  <h1>SCAN-Planner</h1>
+  <h2>Spatial Collision-Aware Local Planning for Route-Guided Long-Range Quadruped Navigation</h2>
+  <p align="center">
+    Han Zheng,
+    Zhe Chen,
+    Yiwen Fu,
+    Ming Yang,
+    Tong Qin<sup>*</sup>
+  </p>
+  <a href="https://github.com/wuyi2121/SCAN-Planner" target="_blank"><img alt="Paper" src="https://img.shields.io/badge/Paper-arXiv-b31b1b?logo=arxiv&logoColor=white"/></a>
+  <a href="https://github.com/wuyi2121/SCAN-Planner" target="_blank"><img alt="Video" src="https://img.shields.io/badge/Video-Bilibili-FB7299?logo=bilibili&logoColor=white"/></a>
+  <a href="https://wuyi2121.github.io/SCAN-Planner/" target="_blank"><img alt="Project Page" src="https://img.shields.io/badge/Project_Page-Website-4A90E2?logo=googlechrome&logoColor=white"/></a>
+  <br/>
+  <p><em>Code will be updated soon！</em></p>
+</div>
 
-Code will be coming soon.
+<p align="center">
+  <img src="assets/images/abstract_real.jpg" width="70%"/>
+</p>
 
-This local planner can support various upper-level tasks, such as autonomous exploration and vision-language navigation (VLN). For related work, please refer to [wuyi2121/TravExplorer](https://github.com/wuyi2121/TravExplorer).
+<p align="center">
+  SCAN-Planner is a spatial collision-aware local planner, providing a <strong>robust low-level planning foundation</strong> for various upper-level tasks, such as autonomous exploration and vision-language navigation. For a VLN-related work, please refer to <a href="https://github.com/wuyi2121/TravExplorer" target="_blank">TravExplorer</a>.
+</p>
 
-## Demos
+## System Overview
 
-### 🏠 Cluttered room
+<p align="center">
+  <img src="assets/images/framework.jpg" width="90%"/>
+</p>
 
-![Cluttered room](assets/gif/maze_compress.gif)
+## Demonstrations
 
-### 🌀 S-shaped bend
+<table>
+  <tr>
+    <td align="center" width="50%">
+      <img src="assets/gif/maze_compress.gif" width="100%"/>
+    </td>
+    <td align="center" width="50%">
+      <img src="assets/gif/sshape_compress.gif" width="100%"/>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="50%">
+      <img src="assets/gif/terrain_compress.gif" width="100%"/>
+    </td>
+    <td align="center" width="50%">
+      <img src="assets/gif/dynamic_compress.gif" width="100%"/>
+    </td>
+  </tr>
+</table>
 
-![S-shaped bend](assets/gif/sshape_compress.gif)
+More videos and interactive demonstrations are available on the
+<a href="https://wuyi2121.github.io/SCAN-Planner/" target="_blank">project page</a>.
 
-### 🚧 Dynamic obstacle
+## Citation
 
-![Dynamic obstacle](assets/gif/dynamic_compress.gif)
+Citation information will be added once the paper is available.
 
-### 🌈 Cross-floor long-range navigation
+## License
 
-![Cross-floor long-range navigation](assets/gif/cross_compress.gif)
+This project is licensed under the Apache License 2.0. See [LICENSE](LICENSE) for details.
