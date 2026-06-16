@@ -19,7 +19,7 @@
   <img src="assets/images/abstract_real.jpg" width="70%"/>
 </p>
 
-<p align="center">
+<p align="justify">
   SCAN-Planner is a spatial collision-aware local planner, providing a <strong>robust low-level planning foundation</strong> for various upper-level tasks, such as autonomous exploration and vision-language navigation. For a VLN-related work, please refer to <a href="https://github.com/wuyi2121/TravExplorer" target="_blank">TravExplorer</a>.
 </p>
 
