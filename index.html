@@ -6,129 +6,146 @@
   <meta name="keywords" content="Quadruped Navigation, Local Planning, Collision Avoidance, Robotics">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SCAN-Planner</title>
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
   <link rel="stylesheet" href="static/css/index.css">
   <script defer src="static/js/index.js"></script>
 </head>
 <body>
-  <section class="hero">
-    <div class="hero-body">
-      <div class="container is-max-widescreen">
-        <div class="columns is-centered">
-          <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title">
-              <span class="scan-gradient">SCAN-Planner</span>: Spatial Collision-Aware Local Planning for Route-Guided Long-Range Quadruped Navigation
-            </h1>
-            <div class="is-size-4 publication-authors">
-              <span class="author-block">Han Zheng,</span>
-              <span class="author-block">Zhe Chen,</span>
-              <span class="author-block">Yiwen Fu,</span>
-              <span class="author-block">Ming Yang,</span>
-              <span class="author-block">Tong Qin*</span>
-            </div>
-            <div class="publication-affiliation">
-              <img src="static/images/logo.png" alt="Shanghai Jiao Tong University">
-            </div>
-            <div class="publication-links">
-              <span class="link-block">
-                <a href="./" class="button is-normal is-rounded is-dark">
-                  <span>Paper</span>
-                </a>
-              </span>
-              <span class="link-block">
-                <a href="./" class="button is-normal is-rounded is-dark">
-                  <span>arXiv</span>
-                </a>
-              </span>
-              <span class="link-block">
-                <a href="./" class="button is-normal is-rounded is-dark">
-                  <span>Video</span>
-                </a>
-              </span>
-              <span class="link-block">
-                <a href="https://github.com/wuyi2121/SCAN-Planner" target="_blank" rel="noopener" class="button is-normal is-rounded is-dark">
-                  <span>Code</span>
-                </a>
-              </span>
-            </div>
-          </div>
+  <main>
+    <section class="hero">
+      <div class="hero-inner">
+        <p class="project-name">SCAN-Planner</p>
+        <h1>SCAN-Planner: Spatial Collision-Aware Local Planning for Route-Guided Long-Range Quadruped Navigation</h1>
+        <p class="authors">Han Zheng, Zhe Chen, Yiwen Fu, Yang Ming, Tong Qin</p>
+        <div class="links">
+          <a href="https://arxiv.org/abs/2606.19555" target="_blank" rel="noopener">Paper</a>
+          <a href="https://arxiv.org/abs/2606.19555" target="_blank" rel="noopener">arXiv</a>
+          <a href="https://www.bilibili.com/video/BV15a7P6UEXb/?share_source=copy_web&amp;vd_source=93f0370c87e0f034781f015b125a2aaa" target="_blank" rel="noopener">Video</a>
+          <a href="https://github.com/wuyi2121/SCAN-Planner" target="_blank" rel="noopener">GitHub</a>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section demo-section demo-section-collision">
-    <div class="container is-max-widescreen">
-      <h2 class="title is-2 has-text-centered demo-group-title">Collision Avoidance Demonstration</h2>
-
-      <div class="demo-grid demo-grid-collision">
-        <div class="demo-item demo-item-interactive content has-text-centered" data-modal-title="Cluttered Room" data-modal-src="video/Cluttered%20room.mp4">
-          <video autoplay muted defaultMuted loop playsinline preload="metadata" controlsList="nodownload noplaybackrate noremoteplayback" disablepictureinpicture disableRemotePlayback>
-            <source src="video/Cluttered%20room.mp4" type="video/mp4">
+    <section class="video-showcase" aria-label="SCAN-Planner videos">
+      <article class="video-section featured">
+        <div class="video-copy">
+          <span class="index">01</span>
+          <h2>Cross Floor</h2>
+        </div>
+        <div class="video-frame">
+          <video
+            data-src="video/Cross%20floor.mp4"
+            controls
+            muted
+            defaultMuted
+            playsinline
+            preload="metadata"
+            controlsList="nodownload noplaybackrate noremoteplayback"
+            disablepictureinpicture
+            disableRemotePlayback>
           </video>
         </div>
+      </article>
 
-        <div class="demo-item demo-item-interactive content has-text-centered" data-modal-title="S-Shaped Bend" data-modal-src="video/S-shaped%20bend.mp4">
-          <video autoplay muted defaultMuted loop playsinline preload="metadata" controlsList="nodownload noplaybackrate noremoteplayback" disablepictureinpicture disableRemotePlayback>
-            <source src="video/S-shaped%20bend.mp4" type="video/mp4">
+      <article class="video-section">
+        <div class="video-copy">
+          <span class="index">02</span>
+          <h2>Last Mile Delivery</h2>
+        </div>
+        <div class="video-frame">
+          <video
+            data-src="video/Last%20mile%20delivery.mp4"
+            controls
+            muted
+            defaultMuted
+            playsinline
+            preload="metadata"
+            controlsList="nodownload noplaybackrate noremoteplayback"
+            disablepictureinpicture
+            disableRemotePlayback>
           </video>
         </div>
+      </article>
 
-        <div class="demo-item demo-item-interactive content has-text-centered" data-modal-title="3D Unstructured Terrain" data-modal-src="video/3D%20unstructured%20terrain.mp4">
-          <video autoplay muted defaultMuted loop playsinline preload="metadata" controlsList="nodownload noplaybackrate noremoteplayback" disablepictureinpicture disableRemotePlayback>
-            <source src="video/3D%20unstructured%20terrain.mp4" type="video/mp4">
+      <article class="video-section">
+        <div class="video-copy">
+          <span class="index">03</span>
+          <h2>Cluttered Room</h2>
+        </div>
+        <div class="video-frame">
+          <video
+            data-src="video/Cluttered%20room.mp4"
+            controls
+            muted
+            defaultMuted
+            playsinline
+            preload="metadata"
+            controlsList="nodownload noplaybackrate noremoteplayback"
+            disablepictureinpicture
+            disableRemotePlayback>
           </video>
         </div>
+      </article>
 
-        <div class="demo-item demo-item-interactive content has-text-centered" data-modal-title="Dynamic Obstacle" data-modal-src="video/Dynamic%20obstacle.mp4">
-          <video autoplay muted defaultMuted loop playsinline preload="metadata" controlsList="nodownload noplaybackrate noremoteplayback" disablepictureinpicture disableRemotePlayback>
-            <source src="video/Dynamic%20obstacle.mp4" type="video/mp4">
+      <article class="video-section">
+        <div class="video-copy">
+          <span class="index">04</span>
+          <h2>S-Shaped Bend</h2>
+        </div>
+        <div class="video-frame">
+          <video
+            data-src="video/S-shaped%20bend.mp4"
+            controls
+            muted
+            defaultMuted
+            playsinline
+            preload="metadata"
+            controlsList="nodownload noplaybackrate noremoteplayback"
+            disablepictureinpicture
+            disableRemotePlayback>
           </video>
         </div>
-      </div>
-    </div>
-  </section>
+      </article>
 
-  <section class="section demo-section demo-section-cross">
-    <div class="container is-max-widescreen">
-      <h2 class="title is-2 has-text-centered demo-group-title">Cross-Floor Inspection</h2>
+      <article class="video-section">
+        <div class="video-copy">
+          <span class="index">05</span>
+          <h2>3D Unstructured Terrain</h2>
+        </div>
+        <div class="video-frame">
+          <video
+            data-src="video/3D%20unstructured%20terrain.mp4"
+            controls
+            muted
+            defaultMuted
+            playsinline
+            preload="metadata"
+            controlsList="nodownload noplaybackrate noremoteplayback"
+            disablepictureinpicture
+            disableRemotePlayback>
+          </video>
+        </div>
+      </article>
 
-      <div class="demo-item content has-text-centered">
-        <video controls muted defaultMuted loop playsinline preload="metadata" controlsList="nodownload noplaybackrate noremoteplayback" disablepictureinpicture disableRemotePlayback>
-          <source src="video/Cross%20floor.mp4" type="video/mp4">
-        </video>
-      </div>
-    </div>
-  </section>
-
-  <section class="section demo-section demo-section-delivery">
-    <div class="container is-max-widescreen">
-      <h2 class="title is-2 has-text-centered demo-group-title">Last-Mile Delivery</h2>
-
-      <div class="demo-item content has-text-centered">
-        <video controls muted defaultMuted loop playsinline preload="metadata" controlsList="nodownload noplaybackrate noremoteplayback" disablepictureinpicture disableRemotePlayback>
-          <source src="video/Last%20mile%20delivery.mp4" type="video/mp4">
-        </video>
-      </div>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="container is-max-widescreen">
-      <div class="content has-text-centered">
-        <p>Page template borrowed from <a href="https://nerfies.github.io/"><span class="dnerf">Nerfies</span></a>.</p>
-      </div>
-    </div>
-  </footer>
-
-  <div class="video-modal" id="video-modal" aria-hidden="true">
-    <button class="modal-close" type="button" aria-label="Close video detail">&times;</button>
-    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-      <div class="modal-header">
-        <h2 class="modal-title" id="modal-title"></h2>
-      </div>
-      <div class="modal-video-wrap" id="modal-video-wrap"></div>
-    </div>
-  </div>
+      <article class="video-section">
+        <div class="video-copy">
+          <span class="index">06</span>
+          <h2>Dynamic Obstacle</h2>
+        </div>
+        <div class="video-frame">
+          <video
+            data-src="video/Dynamic%20obstacle.mp4"
+            controls
+            muted
+            defaultMuted
+            playsinline
+            preload="metadata"
+            controlsList="nodownload noplaybackrate noremoteplayback"
+            disablepictureinpicture
+            disableRemotePlayback>
+          </video>
+        </div>
+      </article>
+    </section>
+  </main>
 </body>
 </html>
