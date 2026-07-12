@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "If you use this ROS 2 port, please cite the original SCAN-Planner paper."
+title: "SCAN-Planner ROS 2"
+type: software
+license: Apache-2.0
+repository-code: "https://github.com/xiaoqi371317/SCAN-Planner-Ros2"
+authors:
+  - alias: xiaoqi371317
+preferred-citation:
+  type: article
+  title: "SCAN-Planner: Spatial Collision-Aware Local Planning for Route-Guided Long-Range Quadruped Navigation"
+  authors:
+    - family-names: Zheng
+      given-names: Han
+    - family-names: Chen
+      given-names: Zhe
+    - family-names: Fu
+      given-names: Yiwen
+    - family-names: Yang
+      given-names: Ming
+    - family-names: Qin
+      given-names: Tong
+  journal: "arXiv preprint arXiv:2606.19555"
+  year: 2026
+  url: "https://arxiv.org/abs/2606.19555"
