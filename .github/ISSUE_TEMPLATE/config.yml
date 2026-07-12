@@ -1,5 +1,0 @@
-blank_issues_enabled: false
-contact_links:
-  - name: Security vulnerability
-    url: https://github.com/xiaoqi371317/SCAN-Planner-Ros2/security/advisories/new
-    about: Please report vulnerabilities privately.

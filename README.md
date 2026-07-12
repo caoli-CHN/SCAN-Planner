@@ -1,47 +1,41 @@
-# SCAN-Planner ROS 2
+<div align="center">
+  <h1>SCAN-Planner ROS 2</h1>
+  <h2>面向路线引导四足长程导航的空间碰撞感知局部规划器</h2>
+  <a href="https://arxiv.org/abs/2606.19555"><img alt="论文" src="https://img.shields.io/badge/论文-arXiv-b31b1b?logo=arxiv&logoColor=white"/></a>
+  <a href="https://www.bilibili.com/video/BV15a7P6UEXb/"><img alt="视频" src="https://img.shields.io/badge/视频-Bilibili-FB7299?logo=bilibili&logoColor=white"/></a>
+  <a href="https://wuyi2121.github.io/SCAN-Planner/"><img alt="项目主页" src="https://img.shields.io/badge/项目主页-Website-4A90E2?logo=googlechrome&logoColor=white"/></a>
+</div>
 
-[中文说明](README-CN.md) · [Upstream ROS 1 project](https://github.com/wuyi2121/SCAN-Planner) · [Paper](https://arxiv.org/abs/2606.19555)
+SCAN-Planner 是一款面向四足机器人导航的空间碰撞感知局部规划器。本分支是原生 ROS 2 自移植版本，适配 Ubuntu 22.04、ROS 2 Humble、C++17 和 `colcon` 构建系统。
 
-Native ROS 2 port of **SCAN-Planner: Spatial Collision-Aware Local Planning for Route-Guided Long-Range Quadruped Navigation**. This repository targets **Ubuntu 22.04** and **ROS 2 Humble**, and uses `ament_cmake`, `colcon`, `rclcpp`, RViz2 and `tf2_ros`.
+本仓库是 [wuyi2121/SCAN-Planner](https://github.com/wuyi2121/SCAN-Planner) 的衍生 ROS 2 移植版。核心算法、项目设计与原始研究工作归功于 Han Zheng、Zhe Chen、Yiwen Fu、Ming Yang 和 Tong Qin；ROS 2 适配由本仓库维护者完成，不代表原作者的官方发布或认可。
 
-> This is a derivative work of [wuyi2121/SCAN-Planner](https://github.com/wuyi2121/SCAN-Planner). The original algorithm, project design and research work are by Han Zheng, Zhe Chen, Yiwen Fu, Ming Yang and Tong Qin. This repository ports and adapts the project to ROS 2 Humble; it is not an official upstream release.
+## 构建
 
-## Features
-
-- Local planning with B-spline optimization, sliding occupancy mapping and A* search.
-- Deterministic Mockamap-based simulation, CPU point-cloud sensing and an optional OpenGL sensing backend.
-- Go2 Xacro description, ROS 2 controllers and RViz2 visualization.
-- Navigation through RViz2 goals, predefined waypoints or a reference path.
-
-## Requirements
-
-- Ubuntu 22.04
-- ROS 2 Humble
-- C++17 and `colcon`
-
-Install workspace dependencies:
+安装 ROS 2 Humble 及包依赖后，在工作空间根目录下执行构建：
 
 ```bash
 sudo apt update
 rosdep update
 rosdep install --from-paths src --ignore-src -r -y
 sudo apt install libarmadillo-dev libglew-dev libglfw3-dev libgl1-mesa-dev libglu1-mesa-dev
-```
 
-`LD_LIBRARY_PATH` must not point at incompatible Conda libraries while building ROS packages:
-
-```bash
 unset LD_LIBRARY_PATH
-source /opt/ros/humble/setup.bash
 colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release
 source install/setup.bash
 ```
 
-To build the OpenGL sensing backend, append `-DUSE_GPU=ON` to the CMake arguments.
+默认构建 CPU 端本地感知后端，如需构建 OpenGL 后端可执行：
 
-## Quick start
+```bash
+colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release -DUSE_GPU=ON
+```
 
-Start the simulation and planner:
+仓库不再链接自带的 x86_64 架构 GLFW 动态库，GPU 构建依赖系统安装的 GLFW、GLEW 和 OpenGL 相关包。
+
+## 快速启动
+
+启动自定义确定性仿真器与规划器：
 
 ```bash
 source install/setup.bash
@@ -50,39 +44,91 @@ ros2 launch scan_planner run.launch.py \
   controller_mode:=closed_loop use_gpu:=false
 ```
 
-In another terminal, start RViz2:
+在另一个终端启动 RViz2：
 
 ```bash
 source install/setup.bash
 ros2 launch scan_planner rviz.launch.py
 ```
 
-Set RViz2's Fixed Frame to `world`, then use the **2D Goal Pose** tool. The default configuration visualizes the Go2 model, `/goal_point`, `/grid_map/sliding_map_bbox`, map clouds and TF.
+RViz2 配置已适配 ROS 2 Humble：Go2 的 RobotModel 使用现有的 `meshes/base.dae`，Sliding Map Bounds 订阅 `/grid_map/sliding_map_bbox`，Goal 订阅 `/goal_point`。
 
-## Documentation
+如果 RViz2 仍提示模型或 Marker 错误，请确认已经重新构建并执行 `source install/setup.bash`，同时检查 Fixed Frame 为 `world`。
 
-- [Chinese guide](README-CN.md)
-- [ROS 2 migration notes](ROS2_MIGRATION.md)
-- [Go2 description package](src/simulator/Utils/go2_description/README.md)
-- [Keypoint tool](tools/README.md)
 
-## Citation
+导航模式说明：
+- `navi_mode:=1`：使用 RViz2 的 2D 目标点工具选择导航目标
+- `navi_mode:=2`：按照 ROS 2 参数文件中预设的 `fsm.waypoints` 路径点序列导航
+- `navi_mode:=3`：订阅 `initial_path` 话题获取全局路径，并在局部范围内进行避障
 
-If you use SCAN-Planner in academic work, please cite the original authors' paper:
+控制器模式分为 `open_loop`（开环）和 `closed_loop`（闭环）两种。本次移植保留的核心启动参数包括：`is_real_world`、`navi_mode`、`sensor_type`、`controller_mode`、`use_gpu`、`use_pcd_map` 和 `pcd_map_file`。
 
-```bibtex
-@article{zheng2026scan,
-  title={SCAN-Planner: Spatial Collision-Aware Local Planning for Route-Guided Long-Range Quadruped Navigation},
-  author={Zheng, Han and Chen, Zhe and Fu, Yiwen and Yang, Ming and Qin, Tong},
-  journal={arXiv preprint arXiv:2606.19555},
-  year={2026}
-}
+当 `use_pcd_map:=true` 时，必须提供已有的 PCD 点云地图文件：
+
+```bash
+ros2 launch scan_planner run.launch.py \
+  use_pcd_map:=true pcd_map_file:=/absolute/path/to/map.pcd
 ```
 
-## Contributing and security
+实际硬件部署时，激光惯导里程计（LIO）、相机和宇树（Unitree）驱动均为外部依赖，默认启动会将规划器输入映射到 `/LIO/odom_vehicle`、`/LIO/odom_imu`、`/LIO/clouds_lidar` 话题以及 RealSense 对齐深度图话题，可根据实际安装的驱动栈修改话题重映射配置。
 
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) before opening an issue or pull request. Report security vulnerabilities according to [SECURITY.md](SECURITY.md). Participation is governed by [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md).
+## 配置与接口
 
-## License and attribution
+规划器、控制器和仿真器的参数分别位于：
+- `src/planner/plan_manage/config/planner.yaml`
+- `src/planner/plan_manage/config/controllers.yaml`
+- `src/planner/plan_manage/config/simulator.yaml`
 
-This port is distributed under the [Apache License 2.0](LICENSE), consistent with the upstream project. Keep the attribution in [NOTICE](NOTICE) when redistributing derivative works. The `NOTICE` file identifies the upstream project and the ROS 2 port changes; it does not imply endorsement by the original authors.
+ROS 2 参数名称使用点号分隔，例如 `grid_map.resolution`。预设路径点是由 xyz 三元组组成的浮点数组：
+
+```yaml
+scan_planner_node:
+  ros__parameters:
+    fsm.navi_mode: 2
+    fsm.waypoints: [0.0, 0.0, 0.3, 5.0, 1.0, 0.3]
+```
+
+自定义消息类型为 `scan_planner_msgs/msg/Bspline` 和 `scan_planner_msgs/msg/DataDisp`。规划器相关话题均为相对话题，支持重映射，核心输出话题包括 `planning/bspline`、`planning/data_display` 和 `planning/go2_execution_frozen`。
+
+关键点记录器现在是原生的 `rclpy` 可执行程序：
+
+```bash
+ros2 run scan_planner keypoint_recorder.py --output keypoints.yaml
+```
+
+## Gazebo Fortress / Go2 仿真
+
+Go2 四足机器人物理模型基于 Gazebo Fortress、`ros_gz_sim` 和 `gz_ros2_control` 构建，对外提供 12 关节的 `joint_trajectory_controller`、`/joint_states` 话题、IMU 数据、四个足端接触力话题以及 `/clock` 时钟话题：
+
+```bash
+ros2 launch go2_description go2_sim.launch.py
+```
+
+如需在不启动物理仿真时查看模型，可运行：
+
+```bash
+ros2 launch go2_description go2_rviz.launch.py
+```
+
+旧版 Gazebo Classic 的轨迹/力可视化插件、外力插件以及宇树 ROS 1 专用插件已不在本 ROS 2 仿真版本中提供。
+
+## 测试
+
+```bash
+colcon test --event-handlers console_direct+
+colcon test-result --verbose
+```
+
+本次源码移植使用的 Windows 开发环境中不包含 ROS 2 Humble 或 Gazebo Fortress，因此完整的构建、启动、QoS 配置和物理仿真验证需要在 Ubuntu 22.04 系统中配合上述依赖完成。
+
+移植实现范围与集成验证标准详见 [ROS2_MIGRATION.md](ROS2_MIGRATION.md)。
+
+## 致谢
+
+首先感谢原项目 [SCAN-Planner](https://github.com/wuyi2121/SCAN-Planner) 的作者 Han Zheng、Zhe Chen、Yiwen Fu、Ming Yang 和 Tong Qin 开源其研究成果与实现。本仓库在保留原项目 Apache-2.0 许可证的前提下完成 ROS 2 移植，完整署名见 [NOTICE](NOTICE)。
+
+SCAN-Planner 的实现借鉴了 EGO-Planner、ROG-Map、MARSIM、Mockamap 和 Leg-KILO 的算法思路与开源代码，真实机器人定位方案基于 Elevator-LIO / FAST-LIO2 实现。
+
+## 许可证
+
+本仓库遵循 [Apache License 2.0](LICENSE)。分发或派生本项目时，请保留 [NOTICE](NOTICE) 中的原项目署名与许可证信息。
