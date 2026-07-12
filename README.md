@@ -4,6 +4,7 @@
   <a href="https://arxiv.org/abs/2606.19555"><img alt="论文" src="https://img.shields.io/badge/论文-arXiv-b31b1b?logo=arxiv&logoColor=white"/></a>
   <a href="https://www.bilibili.com/video/BV15a7P6UEXb/"><img alt="视频" src="https://img.shields.io/badge/视频-Bilibili-FB7299?logo=bilibili&logoColor=white"/></a>
   <a href="https://wuyi2121.github.io/SCAN-Planner/"><img alt="项目主页" src="https://img.shields.io/badge/项目主页-Website-4A90E2?logo=googlechrome&logoColor=white"/></a>
+  <a href="https://wuyi2121.github.io/SCAN-Planner/"><img alt="Project Page" src="https://img.shields.io/badge/Project_Page-Website-4A90E2?logo=googlechrome&logoColor=white"/></a>
 </div>
 
 SCAN-Planner 是一款面向四足机器人导航的空间碰撞感知局部规划器。本分支是原生 ROS 2 自移植版本，适配 Ubuntu 22.04、ROS 2 Humble、C++17 和 `colcon` 构建系统。
@@ -20,7 +21,6 @@ rosdep update
 rosdep install --from-paths src --ignore-src -r -y
 sudo apt install libarmadillo-dev libglew-dev libglfw3-dev libgl1-mesa-dev libglu1-mesa-dev
 
-unset LD_LIBRARY_PATH
 colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release
 source install/setup.bash
 ```
@@ -30,7 +30,6 @@ source install/setup.bash
 ```bash
 colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release -DUSE_GPU=ON
 ```
-
 仓库不再链接自带的 x86_64 架构 GLFW 动态库，GPU 构建依赖系统安装的 GLFW、GLEW 和 OpenGL 相关包。
 
 ## 快速启动
@@ -53,7 +52,6 @@ ros2 launch scan_planner rviz.launch.py
 
 RViz2 配置已适配 ROS 2 Humble：Go2 的 RobotModel 使用现有的 `meshes/base.dae`，Sliding Map Bounds 订阅 `/grid_map/sliding_map_bbox`，Goal 订阅 `/goal_point`。
 
-如果 RViz2 仍提示模型或 Marker 错误，请确认已经重新构建并执行 `source install/setup.bash`，同时检查 Fixed Frame 为 `world`。
 
 
 导航模式说明：
@@ -109,19 +107,8 @@ ros2 launch go2_description go2_sim.launch.py
 ```bash
 ros2 launch go2_description go2_rviz.launch.py
 ```
-
 旧版 Gazebo Classic 的轨迹/力可视化插件、外力插件以及宇树 ROS 1 专用插件已不在本 ROS 2 仿真版本中提供。
 
-## 测试
-
-```bash
-colcon test --event-handlers console_direct+
-colcon test-result --verbose
-```
-
-本次源码移植使用的 Windows 开发环境中不包含 ROS 2 Humble 或 Gazebo Fortress，因此完整的构建、启动、QoS 配置和物理仿真验证需要在 Ubuntu 22.04 系统中配合上述依赖完成。
-
-移植实现范围与集成验证标准详见 [ROS2_MIGRATION.md](ROS2_MIGRATION.md)。
 
 ## 致谢
 
