@@ -46,6 +46,17 @@ ros2 launch scan_planner run.launch.py \
   controller_mode:=closed_loop use_gpu:=false
 ```
 
+
+```bash
+source install/setup.bash
+ros2 launch scan_planner run.launch.py \
+  is_real_world:=false navi_mode:=1 sensor_type:=lidar \
+  controller_mode:=closed_loop use_gpu:=false \
+  use_pcd_map:=true pcd_map_file:=/home/xiaoqi_wen/Desktop/scan/SCAN-Planner/map.pcd
+```
+
+
+
 在另一个终端启动 RViz2：
 
 ```bash

@@ -1,15 +1,28 @@
 """Spawn Go2 in Gazebo Fortress with gz_ros2_control."""
 
+import os
+
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, RegisterEventHandler
+from launch.actions import (
+    DeclareLaunchArgument,
+    IncludeLaunchDescription,
+    RegisterEventHandler,
+    SetEnvironmentVariable,
+)
 from launch.event_handlers import OnProcessExit
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch.substitutions import Command, LaunchConfiguration, PathJoinSubstitution
+from launch.substitutions import Command, EnvironmentVariable, LaunchConfiguration, PathJoinSubstitution
+from ament_index_python.packages import get_package_share_directory
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 
 
 def generate_launch_description():
+    # xacro package:// URIs are converted by Gazebo to
+    # model://go2_description/..., so Gazebo must search the parent of this
+    # package's share directory.  Without this, the robot is spawned but its
+    # DAE visual meshes cannot be rendered.
+    resource_root = os.path.dirname(get_package_share_directory("go2_description"))
     description_share = FindPackageShare("go2_description")
     ros_gz_share = FindPackageShare("ros_gz_sim")
     model = PathJoinSubstitution([description_share, "xacro", "robot.xacro"])
@@ -74,6 +87,18 @@ def generate_launch_description():
 
     return LaunchDescription(
         [
+            # Fortress uses IGN_GAZEBO_RESOURCE_PATH.  Set the newer alias as
+            # well, keeping this launch usable with newer Gazebo releases.
+            SetEnvironmentVariable(
+                name="IGN_GAZEBO_RESOURCE_PATH",
+                value=[resource_root, os.pathsep,
+                       EnvironmentVariable("IGN_GAZEBO_RESOURCE_PATH", default_value="")],
+            ),
+            SetEnvironmentVariable(
+                name="GZ_SIM_RESOURCE_PATH",
+                value=[resource_root, os.pathsep,
+                       EnvironmentVariable("GZ_SIM_RESOURCE_PATH", default_value="")],
+            ),
             DeclareLaunchArgument("x", default_value="0.0"),
             DeclareLaunchArgument("y", default_value="0.0"),
             DeclareLaunchArgument("z", default_value="0.5"),
