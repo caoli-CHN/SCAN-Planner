@@ -29,7 +29,7 @@
 </p>
 
 ## 📢 News
-- **[Jul. 13, 2026]**: ROS2 support is now available! Thanks to [xiaoqi371317](https://github.com/xiaoqi371317) for contributing the ROS2 interface. Check out the [ros2-community](https://github.com/wuyi2121/SCAN-Planner/tree/ros2-community) branch.
+- **[Jul. 13, 2026]**: ROS2 support is now available from community! Thanks to [xiaoqi371317](https://github.com/xiaoqi371317) for contributing the ROS2 interface. Check out the [ros2-community](https://github.com/wuyi2121/SCAN-Planner/tree/ros2-community) branch.
 - **[Jul. 9, 2026]**:  Release the main algorithm of **SCAN-Planner**.
 
 ## 🤖 Demonstrations
