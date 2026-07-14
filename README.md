@@ -88,11 +88,13 @@ source devel/setup.bash && roslaunch scan_planner run.launch
 
 The main launch options are defined in [`run.launch`](src/planner/plan_manage/launch/run.launch):
 
-- `is_real_world`: set to `true` when running with real robot topics, and `false` when testing with the simulator.
+- `is_real_world`: set to `true` when running with real robot topics (body_pose_topic and sensor_pose_topic), and `false` when testing with the simulator.
 - `navi_mode`: selects the navigation interface:
   - `1`: interactive 2D Nav Goal mode
   - `2`: keypoint-based multi-floor navigation; see [`tools/README.md`](tools/README.md)
   - `3`: reference-path tracking with local obstacle avoidance; see [`TravExplorer`](https://github.com/wuyi2121/TravExplorer)
+
+  **Note: If the robot cannot climb stairs, increase the z height of body, keypoints or initial path.**
 - `sensor_type`: select the sensing input. Use `lidar` for point-cloud sensors such as MID360, and `depth` for depth cameras such as RealSense D435.
 
 Other algorithm-related parameters are listed in [`advanced_param.xml`](src/planner/plan_manage/launch/advanced_param.xml). The default settings are tuned for Unitree Go2 and should be adjusted when using a different robot platform.

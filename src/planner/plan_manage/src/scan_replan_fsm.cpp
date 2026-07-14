@@ -50,7 +50,7 @@ namespace scan_planner
     nh.param("grid_map/obstacles_inflation_z_down", self_inflation_z_down_, 0.0);
     nh.param("grid_map/double_cylinder_radius", self_double_cylinder_radius_, 0.0);
     nh.param("grid_map/double_cylinder_offset", self_double_cylinder_offset_, 0.0);
-    nh.param("grid_map/double_cylinder_offset", body_height_, 0.4);
+    nh.param("grid_map/body_height", body_height_, 0.5);
     nh.param("grid_map/frame_id", self_inflation_frame_id_, std::string("world"));
 
     if (navi_mode_ == NAVI_MODE::PRESET_TARGET)
