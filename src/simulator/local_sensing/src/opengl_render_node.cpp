@@ -967,7 +967,7 @@ int main(int argc, char **argv) {
   other_uav_rcv_time.resize(drone_num);
   otheruav_points.resize(drone_num);
   otheruav_pointsindex.resize(drone_num);
-  ros::Subscriber *subs = new ros::Subscriber[drone_num];
+  vector<ros::Subscriber> subs(drone_num);
   for (int i = 0; i < drone_num; i++) {
     if (i == drone_id) {
       continue;

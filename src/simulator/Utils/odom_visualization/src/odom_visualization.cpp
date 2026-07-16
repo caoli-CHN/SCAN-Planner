@@ -1,6 +1,9 @@
 #include <iostream>
+#include <cmath>
+#include <cstddef>
 #include <string>
 #include <string.h>
+#include <vector>
 #include "ros/ros.h"
 #include "tf/transform_broadcaster.h"
 #include "nav_msgs/Odometry.h"
@@ -17,6 +20,9 @@ using namespace std;
 
 static  string mesh_resource;
 static double color_r, color_g, color_b, color_a, cov_scale, scale;
+static int max_path_poses;
+static int max_trajectory_segments;
+static double min_path_distance;
 
 bool   cross_config = false;
 bool   tf45       = false;
@@ -46,6 +52,17 @@ visualization_msgs::Marker sensorROS;
 visualization_msgs::Marker meshROS;
 sensor_msgs::Range         heightROS;
 string _frame_id;
+
+template <typename T>
+void trim_front(std::vector<T>& values, std::size_t max_size)
+{
+  if (values.size() <= max_size)
+  {
+    return;
+  }
+
+  values.erase(values.begin(), values.begin() + (values.size() - max_size));
+}
 
 void odom_callback(const nav_msgs::Odometry::ConstPtr& msg)
 {
@@ -121,12 +138,22 @@ void odom_callback(const nav_msgs::Odometry::ConstPtr& msg)
   velPub.publish(velROS);
 
   // Path
-  static ros::Time prevt = msg->header.stamp;
-  if ((msg->header.stamp - prevt).toSec() > 0.1)
+  static bool has_path_point = false;
+  static geometry_msgs::Point last_path_point;
+  const double dx = poseROS.pose.position.x - last_path_point.x;
+  const double dy = poseROS.pose.position.y - last_path_point.y;
+  const double dz = poseROS.pose.position.z - last_path_point.z;
+  const double distance = std::sqrt(dx * dx + dy * dy + dz * dz);
+  if (!has_path_point || min_path_distance <= 0.0 || distance > min_path_distance)
   {
-    prevt = msg->header.stamp;
     pathROS.header = poseROS.header;
     pathROS.poses.push_back(poseROS);
+    last_path_point = poseROS.pose.position;
+    has_path_point = true;
+    if (max_path_poses > 0)
+    {
+      trim_front(pathROS.poses, static_cast<std::size_t>(max_path_poses));
+    }
     pathPub.publish(pathROS);
   }
 
@@ -281,6 +308,13 @@ void odom_callback(const nav_msgs::Odometry::ConstPtr& msg)
     color.a = 1;
     trajROS.colors.push_back(color);
     trajROS.colors.push_back(color);
+    if (max_trajectory_segments > 0)
+    {
+      const std::size_t max_trajectory_points =
+          static_cast<std::size_t>(max_trajectory_segments) * 2;
+      trim_front(trajROS.points, max_trajectory_points);
+      trim_front(trajROS.colors, max_trajectory_points);
+    }
     ppose = pose;
     pt = t;
     trajPub.publish(trajROS);
@@ -397,6 +431,9 @@ int main(int argc, char** argv)
   n.param("origin", origin, false);  
   n.param("robot_scale", scale, 1.0);
   n.param("frame_id",   _frame_id, string("world") );    
+  n.param("max_path_poses", max_path_poses, 1000);
+  n.param("max_trajectory_segments", max_trajectory_segments, 1000);
+  n.param("min_path_distance", min_path_distance, 0.5);
  
   n.param("cross_config", cross_config, false);    
   n.param("tf45", tf45, true);
